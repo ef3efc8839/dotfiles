@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Paths for battery levels
+BATTERY1="/sys/class/power_supply/BAT0/capacity"
+BATTERY2="/sys/class/power_supply/BAT1/capacity"
+
+# Check if both batteries are present
+if [[ -f "$BATTERY1" ]] && [[ -f "$BATTERY2" ]]; then
+    BAT1=$(cat "$BATTERY1")
+    BAT2=$(cat "$BATTERY2")
+
+    # Calculate average
+    AVERAGE=$(( (BAT1 + BAT2) / 2 ))
+else
+    echo "One or both battery sources not found!"
+    exit 1
+fi
+
+# Determine which emoji to use based on average battery level
+if [[ $AVERAGE -ge 80 ]]; then
+    echo "$AVERAGE% "
+elif [[ $AVERAGE -ge 60 ]]; then
+    echo "$AVERAGE% "
+elif [[ $AVERAGE -ge 40 ]]; then
+    echo "$AVERAGE% "
+elif [[ $AVERAGE -ge 20 ]]; then
+    echo "$AVERAGE% "
+else
+    echo "$AVERAGE% "
+fi

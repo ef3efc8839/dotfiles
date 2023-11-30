@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# variables
+output_dir="$HOME/Pictures/Screenshots"
+output="${output_dir}/pic-selected-$(date '+%y%m%d-%H%M-%S').png"
+xclip_cmd="xclip -sel clip -t image/png"
+
+# Ensure the output directory exists
+mkdir -p "${output_dir}"
+
+# Use maim to take the screenshot, then use tee to both save the screenshot to a file and copy it to the clipboard
+maim -u -s -o | tee "${output}" | ${xclip_cmd}
