@@ -47,10 +47,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  done
  unset f
 fi
-xclip &
+
 pipewire &
 pipewire-pulse &
 wireplumber &
-~/Pictures/Wallpappers/.fehbg
-exec dbus-launch --exit-with-session dwm &
-exec slstatus
+feh --no-fehbg --bg-scale /home/sedative/Pictures/Wallpappers/wp6444114.jpg &
+picom &
+slstatus &
+xclip &
+exec dbus-run-session dwm

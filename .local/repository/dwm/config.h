@@ -31,8 +31,9 @@ static const Rule rules[] = {
 	{ "Tor",		NULL,     NULL,           1 << 8,    	0,		-1 },
 	{ "St",			NULL,     NULL,           0,         	0,		-1 },
 	{ "htop",		NULL,     NULL,           0,         	1,		-1 },
+	{ "crow",		    NULL,     NULL,           0,         	1,		-1 },
 	{ "Telegram",		NULL,     NULL,           1 << 7,    	0,		-1 },
-	{ "discord",		NULL,     NULL,           1 << 7,    	0,		-1 },
+	{ "ArmCord",		NULL,     NULL,           1 << 7,    	0,		-1 },
 	{ "Spotify",		NULL,     NULL,           1 << 4,    	0,		-1 },
 	{ "obsidian",		NULL,     NULL,           1 << 5,    	0,		-1 },
 	{ "KeePassXC",		NULL,     NULL,           0,		0,		-1 },
@@ -40,7 +41,8 @@ static const Rule rules[] = {
 	{ "steam",		NULL,     NULL,           1 << 5,    	0,		-1 },
 	{ "Lutris",		NULL,     NULL,           1 << 5,    	1,		-1 },
 	{ "Zathura",		NULL,     NULL,           1 << 6,    	0,		-1 },
-	{ "Thunar",		NULL,     NULL,           0,		1,		-1 },
+	{ "Godot",		NULL,     NULL,           0,		1,		-1 },
+
 
 };
 
@@ -69,32 +71,40 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/usr/bin/zsh", "-c", cmd, NULL } }
 
+#include <X11/XF86keysym.h>
+
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *crow[] = { "dbus-send", "--type=method_call", "--dest=io.crow_translate.CrowTranslate", "/io/crow_translate/CrowTranslate/MainWindow", "io.crow_translate.CrowTranslate.MainWindow.translateSelection", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenuscr[] = { "dmenu_scripts", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *upvol[]      = { "/usr/bin/pactl",   "set-sink-volume", "0",      "+5%",      NULL };
-static const char *downvol[]    = { "/usr/bin/pactl",   "set-sink-volume", "0",      "-5%",      NULL };
-static const char *mutevol[]    = { "/usr/bin/pactl",   "set-sink-mute",   "0",      "toggle",   NULL };
 
-static const char *light_up[] = {"xbacklight", "-inc", "5", NULL };
-static const char *light_down[] = {"xbacklight", "-dec", "5", NULL };
+static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_SINK@",      "5%+",      NULL };
+static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_SINK@",      "5%-",      NULL };
+static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_SINK@",      "toggle",   NULL };
+
+static const char *brightnessup[] = {"xbacklight", "-inc", "5", NULL };
+static const char *brightnessdown[] = {"xbacklight", "-dec", "5", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
-    	{ MODKEY,			XK_p,			spawn,				{.v = dmenuscr } },
-    	{ MODKEY|ShiftMask,             XK_p,			spawn,				{.v = (const char*[]){ "pavucontrol", NULL } } },
-	{ MODKEY|ShiftMask,             XK_Return,		spawn,				{.v = termcmd } },
+	{ ControlMask,		    XK_space,		spawn,				{.v = crow } },
+    { MODKEY,			    XK_p,			spawn,				{.v = dmenuscr } },
+    { MODKEY|ShiftMask,     XK_p,			spawn,				{.v = (const char*[]){ "pavucontrol", NULL } } },
+	{ MODKEY|ShiftMask,     XK_Return,		spawn,				{.v = termcmd } },
 	{ MODKEY|ShiftMask,		XK_w,			spawn,				{.v = (const char*[]){ "firefox", NULL } } },
 	{ MODKEY|ShiftMask,		XK_t,			spawn,				{.v = (const char*[]){ "telegram-desktop", NULL } } },
 	{ MODKEY|ShiftMask,		XK_s,			spawn,				{.v = (const char*[]){ "spotify", NULL } } },
+	{ MODKEY|ShiftMask,		XK_o,			spawn,				{.v = (const char*[]){ "obsidian", NULL } } },
+	{ MODKEY|ShiftMask,		XK_d,			spawn,				{.v = (const char*[]){ "armcord", NULL } } },
 	{ MODKEY|ShiftMask,		XK_k,			spawn,				{.v = (const char*[]){ "keepassxc", NULL } } },
 	{ MODKEY|ShiftMask,		XK_f,			spawn,				{.v = (const char*[]){ "st", "-e", "htop", NULL } } },
-	{ 0,				XK_Print,		spawn,				{.v = (const char*[]){ "maimpick", NULL } } },
+	{ 0,				    XK_Print,		spawn,				{.v = (const char*[]){ "maimpick", NULL } } },
 
-	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,             	        XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -104,7 +114,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,			XK_q,	   killclient,     {0} },
+	{ MODKEY,			            XK_q,	   killclient,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -124,12 +134,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_BackSpace,      quit,           {0} },
 
-    	{ 0,				XK_F2,		spawn,			{.v = downvol } },
-	{ 0,				XK_F1,		spawn,			{.v = mutevol } },
-	{ 0,				XK_F3,		spawn,			{.v = upvol   } },
+    { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 
-	{ 0,				XK_F6,		spawn,			{.v = light_up} },
-	{ 0,				XK_F5,		spawn,			{.v = light_down} },
+    { 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightnessup} },
+    { 0,                            XF86XK_MonBrightnessDown, spawn,  {.v = brightnessdown} }
 };
 
 /* button definitions */

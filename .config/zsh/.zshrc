@@ -4,11 +4,9 @@ PROMPT='%F{red}%n@%F{white}%m:%~%f$> '
 HISTFILE=/tmp/histfile
 HISTSIZE=1000
 SAVEHIST=1000
-
 export VISUAL=nvim
 
 stty -ixon
-
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
@@ -29,8 +27,8 @@ bindkey -v '^?' backward-delete-char
 alias ls="exa --color=auto"
 alias ll="exa -al --color=auto"
 alias tree="exa -T --level=2 --color=auto"
+alias nsx="nsxiv ."
 alias trans="trans :ru"
-alias nsx="nsxiv -t ."
 
 # exa
 export EXA_COLORS="\
@@ -56,5 +54,4 @@ tx=37:\
 su=37:\
 sf=37:\
 xa=37"
-
 #export STEAM_RUNTIME_PREFER_HOST_LIBRARIES=0

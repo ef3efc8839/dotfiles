@@ -7,9 +7,9 @@ static const int WIN_HEIGHT = 600;
 /* colors and font can be overwritten via X resource properties.
  * See nsxiv(1), X(7) section Resources and xrdb(1) for more information.
  *                                      X resource            value (NULL == default) */
-static const char *WIN_BG[]   = { "Nsxiv.window.background",   "#1d2021" };
-static const char *WIN_FG[]   = { "Nsxiv.window.foreground",   "#001512" };
-static const char *MARK_FG[]  = { "Nsxiv.mark.foreground",     "#efefef" };
+static const char *WIN_BG[]   = { "Nsxiv.window.background",   "#000000" };
+static const char *WIN_FG[]   = { "Nsxiv.window.foreground",   "#ff0000" };
+static const char *MARK_FG[]  = { "Nsxiv.mark.foreground",     "#ffffff" };
 #if HAVE_LIBFONTS
 static const char *BAR_BG[]   = { "Nsxiv.bar.background",       "#1d2021"};
 static const char *BAR_FG[]   = { "Nsxiv.bar.foreground",       "#ffffff"};

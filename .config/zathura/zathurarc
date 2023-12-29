@@ -5,7 +5,7 @@ set statusbar-fg                "#B0B0B0" #04
 set statusbar-bg                "#202020" #01
 
 set inputbar-bg                 "#151515" #00 
-set inputbar-fg                 "#303030" #02
+set inputbar-fg                 "#ffffff" #02
 
 set notification-error-bg       "#AC4142" #08
 set notification-error-fg       "#151515" #00
@@ -29,17 +29,25 @@ set recolor-lightcolor          "#151515" #00
 set recolor-darkcolor           "#E0E0E0" #06
 set recolor                     "true"
 
+set selection-clipboard clipboard
 set sandbox none
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
-set selection-clipboard clipboard
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
-map r reload
-map R rotate
 map K zoom in
 map J zoom out
 map i recolor
 map g goto top
+set window-height 1080
+set window-width 1920 
+map f toggle_fullscreen 
+map [fullscreen] u scroll half-up
+map [fullscreen] d scroll half-down
+map [fullscreen] D toggle_page_mode
+map [fullscreen] K zoom in
+map [fullscreen] J zoom out
+map [fullscreen] i recolor
+map [fullscreen] g goto top

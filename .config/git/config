@@ -1,0 +1,7 @@
+[user]
+	name = ef3efc8839
+	email = apotalimus@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main

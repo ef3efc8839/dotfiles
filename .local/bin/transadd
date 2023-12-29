@@ -1,3 +1,0 @@
-#!/bin/bash
-export GTK_THEME=Yaru-dark
-/usr/bin/transmission-gtk "$1"

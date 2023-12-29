@@ -68,8 +68,7 @@ static const struct arg args[] = {
 			{ cpu_perc,					"[ %1s%, ",			   NULL	},
     	{ run_command,					" %s°C] ",			   "lcputemp", 	},
 			{ ram_perc,					"[ %1s%] ",		   	   NULL	},
-    	{ vol_perc,					"[%s] ",			   	   NULL },
     	{ run_command,			"[%s] ",			   	   "battery", 	},
     	{ keymap,					  "[%s] ",			   NULL 	},
-    	{ datetime,					"[%s]",			   " %a %d/%m/%y %H:%M"	},
+    	{ datetime,					"[%s]",			   "%a %d/%m/%y %H:%M"	},
 };

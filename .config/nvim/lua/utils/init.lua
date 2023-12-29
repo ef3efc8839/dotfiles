@@ -35,6 +35,7 @@ M.parsers = {
   "yaml",
   "toml",
   "regex",
+  "gd",
   "go",
   "rust",
   "dockerfile",
