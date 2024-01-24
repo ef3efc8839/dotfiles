@@ -41,8 +41,6 @@ map K zoom in
 map J zoom out
 map i recolor
 map g goto top
-set window-height 1080
-set window-width 1920 
 map f toggle_fullscreen 
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
