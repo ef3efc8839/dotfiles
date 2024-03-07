@@ -42,6 +42,7 @@ map J zoom out
 map i recolor
 map g goto top
 map f toggle_fullscreen 
+map [fullscreen] f toggle_fullscreen 
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
 map [fullscreen] D toggle_page_mode
