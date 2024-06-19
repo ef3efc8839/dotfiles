@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Get the list of scripts in $HOME/.local/bin/scripts/
+scripts=$(ls $HOME/.local/bin/dmscripts/)
+
+# Use dmenu to let the user select a script
+selected_script=$(echo "$scripts" | dmenu "$@")
+
+# If a script is selected, run it
+[ -z "$selected_script" ] || $HOME/.local/bin/dmscripts/$selected_script
+

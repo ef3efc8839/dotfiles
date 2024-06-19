@@ -1,0 +1,18 @@
+#!/bin/bash
+
+temp_file="/tmp/screenshot.png"
+xclip_cmd="xclip -selection clipboard -t image/png"
+notify_cmd="notify-send -u low"
+
+take_screenshot() {
+    maim -u -s -o "$temp_file"
+
+    if [ -f "$temp_file" ]; then
+        cat "$temp_file" | ${xclip_cmd}
+        ${notify_cmd} "Screenshot saved to clipboard" -i "$temp_file"
+    else
+        ${notify_cmd} "Failed to take screenshot" -i error
+    fi
+}
+
+take_screenshot

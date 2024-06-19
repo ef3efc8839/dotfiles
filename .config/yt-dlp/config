@@ -1,0 +1,5 @@
+--ignore-errors
+# --no-playlist
+
+# Save in ~/Videos
+-o ~/Audio/ytdlp/%(title)s.%(ext)s

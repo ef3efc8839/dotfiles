@@ -1,0 +1,11 @@
+[user]
+	name = ef3efc8839
+	email = apostalimus@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[diff]
+	tool = nvimdiff
+[merge]
+	tool = nvimdiff
