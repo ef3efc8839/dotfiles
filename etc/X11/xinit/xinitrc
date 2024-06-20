@@ -53,7 +53,7 @@ export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 export QT_STYLE_OVERRIDE=Adwaita-Dark
 
 /usr/bin/artix-pipewire-loader &
-feh --no-fehbg --bg-scale /home/sedative/Pictures/Wallpappers/mountains.png &
+feh --no-fehbg --bg-scale $HOME/Pictures/Wallpappers/134123412.png &
 slstatus &
 xclip &
 picom &
