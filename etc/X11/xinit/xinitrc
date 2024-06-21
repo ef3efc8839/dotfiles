@@ -30,7 +30,6 @@ if [ -f "$userresources" ]; then
 
 
 
-
     xrdb -merge "$userresources"
 
 fi
@@ -48,14 +47,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-export GTK_THEME=Adwaita:dark
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=Adwaita-Dark
-
 /usr/bin/artix-pipewire-loader &
 feh --no-fehbg --bg-scale /home/sedative/Pictures/Wallpappers/mountains.png &
 slstatus &
 xclip &
 picom &
 dunst &
+lxpolkit &
 exec dbus-run-session dwm

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+output="$(date '+%y%m%d-%H%M-%S').png"
+xclip_cmd="xclip -selection clipboard -t image/png"
+notify_cmd="notify-send -u low"
+
+take_screenshot() {
+    scrsh="$HOME/Desktop/pic-selected-${output}"
+    maim -u -s -o "$scrsh"
+
+    if [ -s "$scrsh" ]; then
+        cat "$scrsh" | ${xclip_cmd}
+        ${notify_cmd} "Screenshot saved" -i "$scrsh"
+    else
+        ${notify_cmd} "Failed to take screenshot" -i error
+    fi
+}
+
+take_screenshot

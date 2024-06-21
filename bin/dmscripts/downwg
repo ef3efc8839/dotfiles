@@ -1,0 +1,16 @@
+#!/bin/bash
+
+wg_show="wg show"
+notify_cmd="notify-send -u low"
+
+launch() {
+    pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY dbus-launch wg-quick down wg0
+
+    if [ $? -eq 0 ]; then
+	${notify_cmd} "WireGuard tunnel DIACTIVATED"
+    else
+        ${notify_cmd} "Failed to activate WireGuard tunnel" -i error
+    fi
+}
+
+launch

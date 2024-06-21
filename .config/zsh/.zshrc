@@ -27,6 +27,5 @@ bindkey -v '^?' backward-delete-char
 alias ls="eza --color=auto"
 alias ll="eza -al --color=auto"
 alias tree="eza -T --level=2 --color=auto"
-alias nsx="nsxiv ."
-alias trans="trans :ru"
-alias zathura="zathura "$1" > /dev/null 2>&1"
+alias nsx="nsxiv --thumbnail ."
+alias zathura="zathura "$@" > /dev/null 2>&1"

@@ -1,1 +1,1 @@
-flatpak run io.github.spacingbat3.webcord
+flatpak run --env=LC_ALL=ru_RU.utf8 io.github.spacingbat3.webcord
