@@ -1,11 +1,4 @@
-**/*.o
 **/*.png
 **/*.stfolder
 **/.zcompdump
-**/dmenu
-**/stest
-**/dwm
-**/nsxiv
-**/slstatus
-**/st
 **/.sync-conflict*
