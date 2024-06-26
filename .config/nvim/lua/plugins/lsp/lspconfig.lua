@@ -19,16 +19,16 @@ return {
 			opts.desc = "LSP show references"
 			keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-			opts.desc = "Go to declaration"
+			opts.desc = "LSP go to declaration"
 			keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
-			opts.desc = "Show LSP definitions"
+			opts.desc = "LSP show definitions"
 			keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 			opts.desc = "LSP show implementations"
 			keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
-			opts.desc = "Show LSP type definitions"
+			opts.desc = "LSP show type definitions"
 			keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
 			opts.desc = "LSP see available code actions"
@@ -53,7 +53,8 @@ return {
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- configure python server
+		local util = require("lspconfig.util")
+		-- settings for python server
 		lspconfig["pyright"].setup({
 			cmd = { "pyright-langserver", "--stdio" },
 			filetypes = { "python" },
@@ -68,6 +69,29 @@ return {
 			},
 			single_file_support = true,
 		})
+
+		-- settings for bashls
+		lspconfig["bashls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { 'bash-language-server', 'start' },
+			settings = {
+			  bashIde = {
+			    -- Glob pattern for finding and parsing shell script files in the workspace.
+			    -- Used by the background analysis features across files.
+
+			    -- Prevent recursive scanning which will cause issues when opening a file
+			    -- directly in the home directory (e.g. ~/foo.sh).
+			    --
+			    -- Default upstream pattern is "**/*@(.sh|.inc|.bash|.command)".
+			    globPattern = vim.env.GLOB_PATTERN or '*@(.sh|.inc|.bash|.command)',
+			  },
+			},
+			filetypes = { 'sh' },
+			root_dir = util.find_git_ancestor,
+			single_file_support = true,
+		})
+
 		local root_files = {
 			".clangd",
 			".clang-tidy",
@@ -77,8 +101,8 @@ return {
 			"configure.ac",
 			".git",
 		}
-		local util = require("lspconfig.util")
 
+		-- settings for clangd server
 		lspconfig["clangd"].setup({
 			cmd = { "clangd" },
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },

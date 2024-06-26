@@ -491,12 +491,6 @@ format = "%s\n%b"
 icon = Spotify
 timeout = 0
 
-[WebCord]
-appname = webcord 
-format = "%s\n%b"
-icon = Discord 
-timeout = 0
-
 [firefox]
 appname = firefox 
 format = "Firefox\n%s\n%b"

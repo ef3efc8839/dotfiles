@@ -1,1 +1,1 @@
-flatpak run --env=LC_ALL=ru_RU.utf8 org.telegram.desktop
+/usr/bin/telegram-desktop

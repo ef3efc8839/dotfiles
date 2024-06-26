@@ -6,13 +6,17 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				python = { "isort", "black" },
-				c = { "clang_format" },
-				cpp = { "clang_format" },
+			    python = { "isort", "black" },
+			    c = { "clang_format" },
+			    cpp = { "clang_format" },
+			    sh = { "shfmt" },
 			},
 			formatters = {
 				clang_format = {
 					args = { "-style={IndentWidth: 4}" },
+				},
+				shfmt = {
+					args = { "-filename", "$FILENAME", "-i=4" },
 				},
 			},
 		})
