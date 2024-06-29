@@ -1,0 +1,12 @@
+#!/bin/sh
+
+vol="$(wpctl get-volume @DEFAULT_SINK@)"
+vol="${vol#Volume: }"
+split() {
+	# For ommiting the . without calling and external program.
+	IFS=$2
+	set -- $1
+	printf '%s' "$@"
+}
+vol="$(printf "%2.0f" "$(split "$vol" ".")")"
+echo "[Vol:$vol%]"

@@ -49,7 +49,7 @@ fi
 
 /usr/bin/artix-pipewire-loader &
 feh --no-fehbg --bg-scale $HOME/Pictures/Wallpappers/pinadesktop.png &
-slstatus &
+dwmblocks &
 xclip &
 picom &
 dunst &

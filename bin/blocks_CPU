@@ -1,0 +1,4 @@
+temp=$(sensors | awk '/^Tctl/ { printf("%2.0f°C", $2) }')
+usage=$(top -bn1 | grep "Cpu(s)" | awk '{printf("%2.0f%", $2 + $4)}')
+
+echo "[Cpu:$usage $temp]"

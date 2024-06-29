@@ -1,0 +1,1 @@
+free | awk '/^Mem/ { printf("[Mem:%2.0f%]", $3/$2 * 100.0) }'

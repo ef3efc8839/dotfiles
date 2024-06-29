@@ -4,15 +4,22 @@ PROMPT='%F{red}%n@%F{white}%m:%~%f$> '
 HISTFILE=/tmp/histfile
 HISTSIZE=1000
 SAVEHIST=1000
-export VISUAL=nvim
 
 stty -ixon
 
+# Autocompletion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload -F zsh/complist
 
 _comp_options+=(globdots)	
+
+# Default programs
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="st-256color"
+export TERMINAL_PROG="st-256color"
+export BROWSER="firefox"
 
 # Vi mode
 bindkey -v
