@@ -29,11 +29,14 @@ return {
 			})
 
 			mason_tool_installer.setup({
-				"isort", -- python formatter
-				"black", -- python formatter
-				"clang_fromat", -- C/C++... formatter
+				ensure_installed = {
+				    "isort", -- python formatter
+				    "black", -- python formatter
+				    "clang-format", -- C/C++... formatter
+				    "shfmt" -- bash formatter
 
-				"pylint", -- python linter
+				    "pylint", -- python linter
+				},
 			})
 		end,
 	},

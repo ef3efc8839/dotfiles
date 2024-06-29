@@ -6,11 +6,9 @@ return {
 
     lint.linters_by_ft = {
 	python = { "pylint" },
---	sh = { "shellcheck" }
     }
 
     lint.linters.pylint.args = { "-f", "json", "-d=E0401", "-d=C0114", "-d=C0115", "-d=C0116" }
---    lint.linters.shellcheck.args = { "-f", "json", "-" }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
