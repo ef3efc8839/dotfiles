@@ -33,7 +33,7 @@ return {
 				    "isort", -- python formatter
 				    "black", -- python formatter
 				    "clang-format", -- C/C++... formatter
-				    "shfmt" -- bash formatter
+				    "shfmt", -- bash formatter
 
 				    "pylint", -- python linter
 				},
