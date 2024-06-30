@@ -22,7 +22,16 @@ cmd mkfile ${{
   touch $ans
 }}
 
-cmd setbg "$1"
+cmd yank ${{
+    case "$f" in
+    *.png) xclip -sel clipboard -t image/png "$f" ;;
+    *.jpg) xclip -sel clipboard -t image/jpg "$f" ;;
+    *.jpeg) xclip -sel clipboard -t image/jpeg "$f" ;;
+    *.webp) xclip -sel clipboard -t image/webp "$f" ;;
+    *.webm) xclip -sel clipboard -t image/webm "$f" ;;
+    *) echo "Unsupported file type: $f" ;;
+    esac
+}}
 
 map W $setbg $f
 map D trash
@@ -30,3 +39,5 @@ map d mkdir
 map \% mkfile
 map . set hidden!
 map U glob-unselect
+map Y yank
+map T $nsxiv -t "$(pwd)" 
