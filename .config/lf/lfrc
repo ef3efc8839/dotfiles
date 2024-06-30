@@ -4,7 +4,7 @@ set ignorecase true
 set previewer '~/.config/lf/preview'
 set cleaner '~/.config/lf/cleaner'
 set ifs "\n"
-set ratios 1:2:1
+set ratios 1:2:2
 
 # Trash
 %mkdir -p ~/.trash
@@ -41,3 +41,5 @@ map . set hidden!
 map U glob-unselect
 map Y yank
 map T $nsxiv -t "$(pwd)" 
+map <c-r> reload
+map <enter> shell

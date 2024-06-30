@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 wg_show="wg show"
 notify_cmd="notify-send -u low"

@@ -20,6 +20,7 @@ export VISUAL="nvim"
 export TERMINAL="st-256color"
 export TERMINAL_PROG="st-256color"
 export BROWSER="firefox"
+export USER_HOME=$HOME
 
 # Vi mode
 bindkey -v

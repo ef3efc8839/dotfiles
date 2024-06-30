@@ -9,6 +9,8 @@
 # Location of link to wallpaper link.
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
 
+dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
+
 # Give -s as parameter to make notifications silent.
 while getopts "s" o; do case "${o}" in
 	s) silent='1' ;;
@@ -22,5 +24,13 @@ case "$(file --mime-type -b "$trueloc")" in
 	inode/directory ) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && [ -z "$silent" ] && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
 	*) [ -z "$silent" ] && notify-send "🖼️ Error" "Not a valid image or directory." ; exit 1;;
 esac
+
+# If pywal is installed, use it.
+if command -v wal >/dev/null 2>&1 ; then
+	wal -n -i "$(readlink -f $bgloc)" -o "${XDG_CONFIG_HOME:-$HOME/.config}/wal/postrun" >/dev/null 2>&1
+# If pywal is removed, return config files to normal.
+else
+	[ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
+fi
 
 xwallpaper --zoom "$bgloc"

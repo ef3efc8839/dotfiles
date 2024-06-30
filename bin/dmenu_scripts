@@ -4,7 +4,7 @@
 scripts=$(ls $HOME/.local/bin/dmscripts/)
 
 # Use dmenu to let the user select a script
-selected_script=$(echo "$scripts" | dmenu "$@")
+selected_script=$(echo "$scripts" | dmenu -i -l 10 "$@")
 
 # If a script is selected, run it
 [ -z "$selected_script" ] || $HOME/.local/bin/dmscripts/$selected_script
