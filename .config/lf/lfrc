@@ -1,11 +1,32 @@
-set hidden true
 set drawbox true
+set icons true
 set ignorecase true
 set previewer '~/.config/lf/preview'
 set cleaner '~/.config/lf/cleaner'
+set ifs "\n"
+set ratios 1:2:1
 
+# Trash
 %mkdir -p ~/.trash
-
 cmd trash %set -f; mv $fx ~/.trash
 
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  touch $ans
+}}
+
+cmd setbg "$1"
+
+map W $setbg $f
 map D trash
+map d mkdir
+map \% mkfile
+map . set hidden!
+map U glob-unselect
