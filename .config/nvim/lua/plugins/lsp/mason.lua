@@ -25,6 +25,7 @@ return {
 				ensure_installed = {
 					"pyright",
 					"clangd",
+					"bashls",
 				},
 			})
 

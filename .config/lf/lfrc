@@ -3,3 +3,9 @@ set drawbox true
 set ignorecase true
 set previewer '~/.config/lf/preview'
 set cleaner '~/.config/lf/cleaner'
+
+%mkdir -p ~/.trash
+
+cmd trash %set -f; mv $fx ~/.trash
+
+map D trash
