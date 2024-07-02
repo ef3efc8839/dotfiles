@@ -33,6 +33,7 @@ cmd yank ${{
     esac
 }}
 
+
 map W $setbg $f
 map D trash
 map d mkdir
